@@ -1,0 +1,44 @@
+server:
+  port: 8080
+
+spring:
+    resources:
+      static-locations: classpath:/static/
+    datasource:
+        name: test
+        url: jdbc:mysql://47.93.45.81:7836/tasktracker?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+        username: hc
+        password: hu.870203
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 1
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
+    thymeleaf:
+        suffix: .html
+        mode: HTML5
+        encoding: UTF-8
+        cache: false
+        
+logging:
+    config: classpath:log4j2.xml
+    
+mybatis:
+    mapper-locations: classpath:mapper/*.xml
+    type-aliases-package: com.cesi.module.main.*.po
+    mapUnderscoreToCamelCase: true
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
